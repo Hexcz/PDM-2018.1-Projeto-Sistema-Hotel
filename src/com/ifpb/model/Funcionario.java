@@ -90,4 +90,22 @@ public class Funcionario {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+	@Override
+	public String toString() {
+		return "Funcionario [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", login="
+				+ login + ", senha=" + senha + ", matricula=" + matricula + ", contaBancaria=" + contaBancaria
+				+ ", endereco=" + endereco + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Funcionario f = (Funcionario) obj;
+		if(this.matricula.equals(f.getMatricula())) {
+			return true;
+		}
+		return false;
+	}
+    
+    
 }
