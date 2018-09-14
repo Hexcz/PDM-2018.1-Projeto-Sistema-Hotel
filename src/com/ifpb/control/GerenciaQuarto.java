@@ -25,4 +25,26 @@ public class GerenciaQuarto {
 				return quartos.add(novoQuarto);
 			return false;
 		}
+
+	public boolean removerQuarto(int numeroQuarto) {
+		if(quartos.isEmpty() && buscarQuarto(numeroQuarto) == -1)
+			return false;
+		else
+			quartos.remove(buscarQuarto(numeroQuarto));
+			return true;
+	}
+
+	public boolean atualizarQuarto(int numeroQuarto, Quarto quarto) {
+		if(buscarQuarto(numeroQuarto)!= -1 && removerQuarto(numeroQuarto)==true) {
+			return addQuarto(quarto);
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "GerenciaQuarto{" +
+				"quartos=" + quartos +
+				'}';
+	}
 }
