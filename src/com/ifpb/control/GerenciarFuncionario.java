@@ -9,14 +9,14 @@ public class GerenciarFuncionario {
 		funcionarios = new ArrayList<>();
 	}
 	
-	public boolean addFuncionario(Funcionario f) {
+	public boolean createFuncionario(Funcionario f) {
 		if(!funcionarios.isEmpty() && funcionarios.indexOf(f)>=0) {
 			return false;
 		}
 		return funcionarios.add(f);
 	}
 	
-	public Funcionario buscarFuncionario(String matricula) {
+	public Funcionario readFuncionario(String matricula) {
 		for(Funcionario f:funcionarios) {
 			if(f.getMatricula().equals(matricula)) {
 				return f;
@@ -25,18 +25,19 @@ public class GerenciarFuncionario {
 		return null;
 	}
 	
-	public boolean removerFuncionario(String matricula) {
-		if(funcionarios.isEmpty() && buscarFuncionario(matricula)==null)
-			return false;
-		return funcionarios.remove(buscarFuncionario(matricula));
-	}
-	
-	public boolean atualizarFuncionario(String matriculaAntiga, Funcionario f) {
-		if(buscarFuncionario(matriculaAntiga)!= null && removerFuncionario(matriculaAntiga)==true) {
-			return addFuncionario(f);
+	public boolean upadateFuncionario(String matriculaAntiga, Funcionario f) {
+		if(readFuncionario(matriculaAntiga)!= null && removeFuncionario(matriculaAntiga)==true) {
+			return createFuncionario(f);
 		}
 		return false;
 	}
+	
+	public boolean removeFuncionario(String matricula) {
+		if(funcionarios.isEmpty() && readFuncionario(matricula)==null)
+			return false;
+		return funcionarios.remove(readFuncionario(matricula));
+	}
+	
 	
 	@Override
 	public String toString() {
