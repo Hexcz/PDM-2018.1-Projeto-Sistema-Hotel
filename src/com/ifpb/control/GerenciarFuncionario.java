@@ -1,28 +1,26 @@
 package com.ifpb.control;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ifpb.model.Funcionario;
 
 public class GerenciarFuncionario {
-	List<Funcionario> funcionarios;
+	private Map<String, Funcionario> funcionarios;
+	
 	public GerenciarFuncionario() {
-		funcionarios = new ArrayList<>();
+		funcionarios = new HashMap<>();
 	}
 	
 	public boolean create(Funcionario f) {
-		if(!funcionarios.isEmpty() && funcionarios.indexOf(f)>=0) {
+		if(!funcionarios.isEmpty() && funcionarios.get(f.getCpf())==f) {
 			return false;
 		}
-		return funcionarios.add(f);
+		funcionarios.put(f.getCpf(), f);
+		return false;
 	}
 	
 	public Funcionario read(String matricula) {
-		for(Funcionario f:funcionarios) {
-			if(f.getMatricula().equals(matricula)) {
-				return f;
-			}
-		}
-		return null;
+		return funcionarios.get(matricula);
 	}
 	
 	public boolean update(String matriculaAntiga, Funcionario f) {
@@ -35,7 +33,7 @@ public class GerenciarFuncionario {
 	public boolean delete(String matricula) {
 		if(funcionarios.isEmpty() && read(matricula)==null)
 			return false;
-		return funcionarios.remove(read(matricula));
+		return funcionarios.remove(matricula, read(matricula));
 	}
 	
 	

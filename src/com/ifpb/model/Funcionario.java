@@ -5,18 +5,16 @@ public class Funcionario {
     private String nome;
     private String email;
     private String telefone;
-    private String login;
     private String senha;
     private String matricula;
     private ContaBancaria contaBancaria;
     private Endereco endereco;
 
-    public Funcionario(String cpf, String nome, String email, String telefone, String login, String senha, String matricula, ContaBancaria contaBancaria, Endereco endereco) {
+    public Funcionario(String cpf, String nome, String email, String telefone, String senha, String matricula, ContaBancaria contaBancaria, Endereco endereco) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
-        this.login = login;
         this.senha = senha;
         this.matricula = matricula;
         this.contaBancaria = contaBancaria;
@@ -55,14 +53,6 @@ public class Funcionario {
         this.telefone = telefone;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -93,8 +83,7 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", login="
-				+ login + ", senha=" + senha + ", matricula=" + matricula + ", contaBancaria=" + contaBancaria
+		return "Funcionario [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", senha=" + senha + ", matricula=" + matricula + ", contaBancaria=" + contaBancaria
 				+ ", endereco=" + endereco + "]";
 	}
 
