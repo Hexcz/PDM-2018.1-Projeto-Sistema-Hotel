@@ -5,7 +5,7 @@ public class TipoQuarto {
 	private String descricao;
 	private static int id;
 	
-	public TipoQuarto(int codigo, String descricao) {
+	public TipoQuarto(String descricao) {
 		this.codigo = ++id;
 		this.descricao = descricao;
 	}

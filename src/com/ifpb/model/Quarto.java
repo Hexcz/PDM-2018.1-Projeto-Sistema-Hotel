@@ -4,11 +4,13 @@ public class Quarto {
 	private int numero;
 	private String status;
 	private TipoQuarto tipoquarto;
+
 	public Quarto(int numero, String status, TipoQuarto tipoquarto) {
 		this.numero = numero;
 		this.status = status;
 		this.tipoquarto = tipoquarto;
 	}
+
 	public int getNumero() {
 		return numero;
 	}

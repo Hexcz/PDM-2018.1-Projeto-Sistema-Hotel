@@ -1,29 +1,20 @@
 package com.ifpb.model;
 
+import java.util.Objects;
+
 public class Hospede {
 	private String nome;
 	private String cpf;
 	private String telefone;
 	private String email;
-	private String rua;
-	private String bairro;
-	private String numeroCasa;
-	private String cidade;
-	private String estado;
-	private String cep;
-	
-	public Hospede(String nome, String cpf, String telefone, String email, String rua, String bairro, String numeroCasa,
-			String cidade, String estado, String cep) {
+	private Endereco endereco;
+
+	public Hospede(String nome, String cpf, String telefone, String email, Endereco endereco) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.email = email;
-		this.rua = rua;
-		this.bairro = bairro;
-		this.numeroCasa = numeroCasa;
-		this.cidade = cidade;
-		this.estado = estado;
-		this.cep = cep;
+		this.endereco = endereco;
 	}
 
 	public String getNome() {
@@ -58,86 +49,40 @@ public class Hospede {
 		this.email = email;
 	}
 
-	public String getRua() {
-		return rua;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getNumeroCasa() {
-		return numeroCasa;
-	}
-
-	public void setNumeroCasa(String numeroCasa) {
-		this.numeroCasa = numeroCasa;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
-	public String toString() {
-		return "Hospede [nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", rua=" + rua
-				+ ", bairro=" + bairro + ", numeroCasa=" + numeroCasa + ", cidade=" + cidade + ", estado=" + estado
-				+ ", cep=" + cep + "]\n";
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Hospede)) return false;
+		Hospede hospede = (Hospede) o;
+		return Objects.equals(getNome(), hospede.getNome()) &&
+				Objects.equals(getCpf(), hospede.getCpf()) &&
+				Objects.equals(getTelefone(), hospede.getTelefone()) &&
+				Objects.equals(getEmail(), hospede.getEmail()) &&
+				Objects.equals(getEndereco(), hospede.getEndereco());
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		return result;
+
+		return Objects.hash(getNome(), getCpf(), getTelefone(), getEmail(), getEndereco());
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Hospede other = (Hospede) obj;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		return true;
+	public String toString() {
+		return "Hospede{" +
+				"nome='" + nome + '\'' +
+				", cpf='" + cpf + '\'' +
+				", telefone='" + telefone + '\'' +
+				", email='" + email + '\'' +
+				", endereco=" + endereco +
+				'}';
 	}
-	
-	
-	
 }
