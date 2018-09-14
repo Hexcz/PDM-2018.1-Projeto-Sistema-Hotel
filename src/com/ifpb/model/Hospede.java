@@ -110,7 +110,7 @@ public class Hospede {
 	public String toString() {
 		return "Hospede [nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", rua=" + rua
 				+ ", bairro=" + bairro + ", numeroCasa=" + numeroCasa + ", cidade=" + cidade + ", estado=" + estado
-				+ ", cep=" + cep + "]";
+				+ ", cep=" + cep + "]\n";
 	}
 
 	@Override
