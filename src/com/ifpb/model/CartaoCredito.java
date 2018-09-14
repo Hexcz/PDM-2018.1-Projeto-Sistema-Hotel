@@ -1,6 +1,7 @@
 package com.ifpb.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class CartaoCredito {
 	private String numero;
@@ -18,5 +19,27 @@ public class CartaoCredito {
 	public LocalDate getData() {
 		return data;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof CartaoCredito)) return false;
+		CartaoCredito that = (CartaoCredito) o;
+		return Objects.equals(getNumero(), that.getNumero()) &&
+				Objects.equals(getData(), that.getData());
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(getNumero(), getData());
+	}
+
+	@Override
+	public String toString() {
+		return "CartaoCredito{" +
+				"numero='" + numero + '\'' +
+				", data=" + data +
+				'}';
+	}
 }
