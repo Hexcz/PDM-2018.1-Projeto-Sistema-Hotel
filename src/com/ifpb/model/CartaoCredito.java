@@ -6,10 +6,12 @@ import java.util.Objects;
 public class CartaoCredito {
 	private String numero;
 	private LocalDate data;
+	private String cpfHospede;
 	
-	public CartaoCredito(String numero, LocalDate data) {
+	public CartaoCredito(String numero, LocalDate data, String cpfHospede) {
 		this.numero = numero;
 		this.data = data;
+		this.cpfHospede = cpfHospede;
 	}
 
 	public String getNumero() {
@@ -19,27 +21,44 @@ public class CartaoCredito {
 	public LocalDate getData() {
 		return data;
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof CartaoCredito)) return false;
-		CartaoCredito that = (CartaoCredito) o;
-		return Objects.equals(getNumero(), that.getNumero()) &&
-				Objects.equals(getData(), that.getData());
+	
+	public String getCpfHospede() {
+		return cpfHospede;
+	}
+	
+	public void setCpfHospede(String cpf) {
+		cpfHospede = cpf;
 	}
 
 	@Override
 	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		return result;
+	}
 
-		return Objects.hash(getNumero(), getData());
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartaoCredito other = (CartaoCredito) obj;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CartaoCredito{" +
-				"numero='" + numero + '\'' +
-				", data=" + data +
-				'}';
+		return "CartaoCredito [numero=" + numero + ", data=" + data + ", cpfHospede=" + cpfHospede + "]";
 	}
+
+	
 }
