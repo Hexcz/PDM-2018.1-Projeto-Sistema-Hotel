@@ -9,14 +9,14 @@ public class GerenciarFuncionario {
 		funcionarios = new ArrayList<>();
 	}
 	
-	public boolean createFuncionario(Funcionario f) {
+	public boolean create(Funcionario f) {
 		if(!funcionarios.isEmpty() && funcionarios.indexOf(f)>=0) {
 			return false;
 		}
 		return funcionarios.add(f);
 	}
 	
-	public Funcionario readFuncionario(String matricula) {
+	public Funcionario read(String matricula) {
 		for(Funcionario f:funcionarios) {
 			if(f.getMatricula().equals(matricula)) {
 				return f;
@@ -25,17 +25,17 @@ public class GerenciarFuncionario {
 		return null;
 	}
 	
-	public boolean upadateFuncionario(String matriculaAntiga, Funcionario f) {
-		if(readFuncionario(matriculaAntiga)!= null && removeFuncionario(matriculaAntiga)==true) {
-			return createFuncionario(f);
+	public boolean update(String matriculaAntiga, Funcionario f) {
+		if(read(matriculaAntiga)!= null && delete(matriculaAntiga)==true) {
+			return create(f);
 		}
 		return false;
 	}
 	
-	public boolean removeFuncionario(String matricula) {
-		if(funcionarios.isEmpty() && readFuncionario(matricula)==null)
+	public boolean delete(String matricula) {
+		if(funcionarios.isEmpty() && read(matricula)==null)
 			return false;
-		return funcionarios.remove(readFuncionario(matricula));
+		return funcionarios.remove(read(matricula));
 	}
 	
 	

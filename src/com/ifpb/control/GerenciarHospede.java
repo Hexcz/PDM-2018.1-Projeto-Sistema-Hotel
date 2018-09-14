@@ -10,14 +10,14 @@ public class GerenciarHospede {
 		hospedes = new ArrayList<>();
 	}
 	
-	public boolean createHospede(Hospede hospede) {
+	public boolean create(Hospede hospede) {
 		if(!hospedes.isEmpty() && hospedes.indexOf(hospede)>=0) {
 			return false;
 		}
 		return hospedes.add(hospede);
 	}
 	
-	public List<Hospede> readHospede(String cpfOuNome) {
+	public List<Hospede> read(String cpfOuNome) {
 		List<Hospede> hospede = new ArrayList<>();
 		if(Character.isDigit(cpfOuNome.charAt(0)) && !hospedes.isEmpty()) {
 			for(Hospede h:hospedes) {
@@ -39,7 +39,7 @@ public class GerenciarHospede {
 		return null;
 	}
 	
-	private Hospede read(String cpf) {
+	private Hospede readHospede(String cpf) {
 		if(!hospedes.isEmpty()) {
 			for(Hospede h:hospedes) {
 				if(cpf.equals(h.getCpf())) {
@@ -49,18 +49,18 @@ public class GerenciarHospede {
 		}
 		return null;
 	}
-	
-	public boolean removeHospede(String cpf) {
-		return hospedes.remove(read(cpf));
-	}
-	
-	public boolean atualizaHospede(String cpf, Hospede h) {
-		if(removeHospede(cpf)) {
-			return createHospede(h);
+
+	public boolean update(String cpf, Hospede h) {
+		if(delete(cpf)) {
+			return create(h);
 		}
 		return false;
 	}
-	
+
+	public boolean delete(String cpf) {
+		return hospedes.remove(readHospede(cpf));
+	}
+
 	
 	public List<Hospede> listarHospedes(){
 		return hospedes;
