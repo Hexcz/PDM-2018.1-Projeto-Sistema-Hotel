@@ -1,5 +1,7 @@
 package com.ifpb.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Hospede {
@@ -8,6 +10,7 @@ public class Hospede {
 	private String telefone;
 	private String email;
 	private Endereco endereco;
+	private List<CartaoCredito> cartoes;
 
 	public Hospede(String nome, String cpf, String telefone, String email, Endereco endereco) {
 		this.nome = nome;
@@ -15,6 +18,35 @@ public class Hospede {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
+		this.cartoes = new ArrayList<>();
+	}
+	
+	private CartaoCredito buscarCartao(CartaoCredito cartaoCredito) {
+		if(!cartoes.isEmpty())
+			for(int i = 0;i<cartoes.size();i++)
+				if(cartoes.get(i).equals(cartaoCredito))
+					return cartoes.get(i);
+		return null;
+	}
+	
+	public boolean createCartao(CartaoCredito cc) {
+		if(buscarCartao(cc)!=null)
+			return cartoes.add(cc);
+		return false;
+	}
+	
+	public boolean removeCartao(CartaoCredito cc) {
+		if(!cartoes.isEmpty() && buscarCartao(cc)!=null)
+			return cartoes.remove(cc);
+		return false;
+	}
+	
+	public List<CartaoCredito> getCartoes() {
+		return cartoes;
+	}
+
+	public void setCartoes(List<CartaoCredito> cartoes) {
+		this.cartoes = cartoes;
 	}
 
 	public String getNome() {
@@ -58,31 +90,34 @@ public class Hospede {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Hospede)) return false;
-		Hospede hospede = (Hospede) o;
-		return Objects.equals(getNome(), hospede.getNome()) &&
-				Objects.equals(getCpf(), hospede.getCpf()) &&
-				Objects.equals(getTelefone(), hospede.getTelefone()) &&
-				Objects.equals(getEmail(), hospede.getEmail()) &&
-				Objects.equals(getEndereco(), hospede.getEndereco());
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		return result;
 	}
 
 	@Override
-	public int hashCode() {
-
-		return Objects.hash(getNome(), getCpf(), getTelefone(), getEmail(), getEndereco());
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Hospede other = (Hospede) obj;
+		if (cpf == null) {
+			if (other.cpf != null)
+				return false;
+		} else if (!cpf.equals(other.cpf))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Hospede{" +
-				"nome='" + nome + '\'' +
-				", cpf='" + cpf + '\'' +
-				", telefone='" + telefone + '\'' +
-				", email='" + email + '\'' +
-				", endereco=" + endereco +
-				'}';
+		return "Hospede [nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", endereco="
+				+ endereco + ", cartoes=" + cartoes + "]";
 	}
+
 }

@@ -6,12 +6,10 @@ import java.util.Objects;
 public class CartaoCredito {
 	private String numero;
 	private LocalDate data;
-	private String cpfHospede;
 	
-	public CartaoCredito(String numero, LocalDate data, String cpfHospede) {
+	public CartaoCredito(String numero, LocalDate data) {
 		this.numero = numero;
 		this.data = data;
-		this.cpfHospede = cpfHospede;
 	}
 
 	public String getNumero() {
@@ -20,14 +18,6 @@ public class CartaoCredito {
 
 	public LocalDate getData() {
 		return data;
-	}
-	
-	public String getCpfHospede() {
-		return cpfHospede;
-	}
-	
-	public void setCpfHospede(String cpf) {
-		cpfHospede = cpf;
 	}
 
 	@Override
@@ -57,8 +47,10 @@ public class CartaoCredito {
 
 	@Override
 	public String toString() {
-		return "CartaoCredito [numero=" + numero + ", data=" + data + ", cpfHospede=" + cpfHospede + "]";
+		return "CartaoCredito [numero=" + numero + ", data=" + data + "]";
 	}
+
+	
 
 	
 }
