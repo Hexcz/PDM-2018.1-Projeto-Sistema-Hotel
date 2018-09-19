@@ -59,14 +59,14 @@ public class Reserva {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+//        if (this == o) return true;
         if (!(o instanceof Reserva)) return false;
         Reserva reserva = (Reserva) o;
-        return getCodigo() == reserva.getCodigo() &&
-                getNumeroQuarto() == reserva.getNumeroQuarto() &&
-                Objects.equals(getStatus(), reserva.getStatus()) &&
-                Objects.equals(getCpfHospede(), reserva.getCpfHospede()) &&
-                Objects.equals(getMatriculaFuncionario(), reserva.getMatriculaFuncionario());
+        return codigo == reserva.getCodigo();
+//                && getNumeroQuarto() == reserva.getNumeroQuarto() &&
+//                Objects.equals(getStatus(), reserva.getStatus()) &&
+//                Objects.equals(getCpfHospede(), reserva.getCpfHospede()) &&
+//                Objects.equals(getMatriculaFuncionario(), reserva.getMatriculaFuncionario());
     }
 
     @Override
@@ -83,6 +83,6 @@ public class Reserva {
                 ", cpfHospede='" + cpfHospede + '\'' +
                 ", matriculaFuncionario='" + matriculaFuncionario + '\'' +
                 ", numeroQuarto=" + numeroQuarto +
-                '}';
+                "}\n";
     }
 }

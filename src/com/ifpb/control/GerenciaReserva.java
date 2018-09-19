@@ -24,7 +24,23 @@ public class GerenciaReserva {
 		}
 		return null;
 	}
-
+	
+	public boolean update(Reserva r) { 
+		if(reservas.set(reservas.indexOf(r), r)!=null)
+			return true;
+		return false;
+	}
+	
+	public boolean delete(int codigo) {
+		if(!reservas.isEmpty())
+			return reservas.remove(read(codigo));
+		return false;
+	}
+	
+	public List<Reserva> listarReserva(){
+		return reservas;
+	}
+	
 	@Override
 	public String toString() {
 		return "GerenciaReserva [reservas=" + reservas + "]";

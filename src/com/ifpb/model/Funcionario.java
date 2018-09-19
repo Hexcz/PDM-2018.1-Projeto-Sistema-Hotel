@@ -10,7 +10,7 @@ public class Funcionario {
     private ContaBancaria contaBancaria;
     private Endereco endereco;
 
-    public Funcionario(String cpf, String nome, String email, String telefone, String senha, String matricula, ContaBancaria contaBancaria, Endereco endereco) {
+    public Funcionario(String cpf, String nome, String email, String senha, String telefone, String matricula, ContaBancaria contaBancaria, Endereco endereco) {
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;

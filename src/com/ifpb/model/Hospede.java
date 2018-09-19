@@ -10,7 +10,6 @@ public class Hospede {
 	private String telefone;
 	private String email;
 	private Endereco endereco;
-	private List<CartaoCredito> cartoes;
 
 	public Hospede(String nome, String cpf, String telefone, String email, Endereco endereco) {
 		this.nome = nome;
@@ -18,35 +17,6 @@ public class Hospede {
 		this.telefone = telefone;
 		this.email = email;
 		this.endereco = endereco;
-		this.cartoes = new ArrayList<>();
-	}
-	
-	private CartaoCredito buscarCartao(CartaoCredito cartaoCredito) {
-		if(!cartoes.isEmpty())
-			for(int i = 0;i<cartoes.size();i++)
-				if(cartoes.get(i).equals(cartaoCredito))
-					return cartoes.get(i);
-		return null;
-	}
-	
-	public boolean createCartao(CartaoCredito cc) {
-		if(buscarCartao(cc)!=null)
-			return cartoes.add(cc);
-		return false;
-	}
-	
-	public boolean removeCartao(CartaoCredito cc) {
-		if(!cartoes.isEmpty() && buscarCartao(cc)!=null)
-			return cartoes.remove(cc);
-		return false;
-	}
-	
-	public List<CartaoCredito> getCartoes() {
-		return cartoes;
-	}
-
-	public void setCartoes(List<CartaoCredito> cartoes) {
-		this.cartoes = cartoes;
 	}
 
 	public String getNome() {
@@ -117,7 +87,7 @@ public class Hospede {
 	@Override
 	public String toString() {
 		return "Hospede [nome=" + nome + ", cpf=" + cpf + ", telefone=" + telefone + ", email=" + email + ", endereco="
-				+ endereco + ", cartoes=" + cartoes + "]";
+				+ endereco + "]";
 	}
 
 }

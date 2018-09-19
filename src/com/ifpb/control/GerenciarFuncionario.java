@@ -36,6 +36,12 @@ public class GerenciarFuncionario {
 		return funcionarios.remove(matricula, read(matricula));
 	}
 	
+	public boolean isAutenticado(String email, String senha) {
+		Funcionario f = funcionarios.get(email);
+		if(f!=null)
+			return f.getSenha().equals(senha);
+		return false;
+	}
 	
 	@Override
 	public String toString() {
