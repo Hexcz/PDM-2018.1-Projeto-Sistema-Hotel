@@ -19,13 +19,18 @@ public class App {
 		while(interruptor) {
 			System.out.println("----------------TELA INICIAL--------------");
 			
-			System.out.print("Usuário(email):");
-			usuario = ler.next();
-			System.out.print("Senha:");
-			senha = ler.next();
-			
 			System.out.print("1-Autenticar        2-Criar nova conta     0-Sair\n>>>>>");
 			i = ler.nextInt();
+			
+			if(i == 1) {
+				System.out.print("Usuário(email):");
+				usuario = ler.next();
+				System.out.print("Senha:");
+				senha = ler.next();
+			}
+			
+			
+			
 //---------------------------------------------------------------------------------------------------------------------------------------------------	
 			if(i == 1 && gf.isAutenticado(usuario, senha)) {
 				while(interruptor) {
@@ -57,7 +62,7 @@ public class App {
 				}
 			}
 //----------------------------------------------------------------------------------------------------------------------------------------------------	
-			else if(i == 2 && gf.isAutenticado(usuario, senha)) {
+			else if(i == 2) {
 				gf.create(construirFuncionario(ler));
 			}else {System.out.println("Fim do programa"); break;}
 //---------------------------------------------------------------------------------------------------------------------------------------------------			
