@@ -5,10 +5,15 @@ public class Quarto {
 	private String status;
 	private TipoQuarto tipoquarto;
 
-	public Quarto(int numero, String status, TipoQuarto tipoquarto) {
+	public Quarto(int numero, TipoQuarto tipoquarto) {
 		this.numero = numero;
-		this.status = status;
+		this.status = "Livre";
 		this.tipoquarto = tipoquarto;
+	}
+
+	@Override
+	public String toString() {
+		return "[numero=" + numero + ", status=" + status + ", tipoquarto=" + tipoquarto + "]";
 	}
 
 	public int getNumero() {

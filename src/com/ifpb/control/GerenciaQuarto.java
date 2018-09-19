@@ -13,8 +13,9 @@ public class GerenciaQuarto {
 		}
 		
 		public boolean create(Quarto novoQuarto) {
-			if(read(novoQuarto.getNumero())<0)
+			if(read(novoQuarto.getNumero())<0) {
 				return quartos.add(novoQuarto);
+			}
 			return false;
 		}
 
@@ -40,11 +41,41 @@ public class GerenciaQuarto {
 				quartos.remove(read(numeroQuarto));
 				return true;
 		}
+		
+		public boolean mudarStatus(int numeroQuarto) {
+			for(Quarto q : quartos) {
+				if(q.getNumero()==numeroQuarto) {
+					if(q.getStatus()=="Reservado") {
+						q.setStatus("Livre");
+					}else {
+						q.setStatus("Reservado");
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		public ArrayList<Quarto> listarQuartosLivres(){
+			ArrayList<Quarto> q = new ArrayList<>();
+			for(Quarto quarto:quartos) {
+				if(quarto.getStatus()=="Livre") {
+					q.add(quarto);
+				}
+			}
+			return q;
+		}
 
+		public boolean isQuartoLivre(int codigo) {
+			for() {
+//				
+			}
+		}
+		
 		@Override
 		public String toString() {
-			return "GerenciaQuarto{" +
-					"quartos=" + quartos +
-					'}';
+			return "GerenciaQuarto [quartos=" + quartos + "]";
 		}
+		
+		
 }
