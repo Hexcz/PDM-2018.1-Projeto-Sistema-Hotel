@@ -42,7 +42,7 @@ public class GerenciarFuncionario {
 			return f.getSenha().equals(senha);
 		return false;
 	}
-	public boolean test() {
+	public boolean test(int c) {
 		return true;
 	}
 	
