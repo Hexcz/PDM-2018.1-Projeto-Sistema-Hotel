@@ -42,6 +42,9 @@ public class GerenciarFuncionario {
 			return f.getSenha().equals(senha);
 		return false;
 	}
+	public boolean test() {
+		return true;
+	}
 	
 	@Override
 	public String toString() {
