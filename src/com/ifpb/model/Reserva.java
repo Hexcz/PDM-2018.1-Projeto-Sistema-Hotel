@@ -1,6 +1,7 @@
 package com.ifpb.model;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Objects;
 
 import com.ifpb.control.GerenciaQuarto;
@@ -15,9 +16,10 @@ public class Reserva {
     private int[] numerosQuartos;
     private LocalDate dataInicio;
     private LocalDate dataFim;
+    private Hospedagem hospedagem;
 
     public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos,
-    		LocalDate dataInicio, LocalDate dataFim) throws QuartoInvalidoException
+    		LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
     {
         this.codigo = codigo;
         this.status = status;
@@ -33,13 +35,26 @@ public class Reserva {
         }
         this.numerosQuartos = numerosQuartos;
         this.dataInicio = dataInicio;
+        this.hospedagem = hospedagem;
         
         //perguntar o numero de quartos no app
     }
     
     
 
-    public int getCodigo() {
+    public Hospedagem getHospedagem() {
+		return hospedagem;
+	}
+
+
+
+	public void setHospedagem(Hospedagem hospedagem) {
+		this.hospedagem = hospedagem;
+	}
+
+
+
+	public int getCodigo() {
         return codigo;
     }
 
@@ -106,14 +121,15 @@ public class Reserva {
 	}
 
 
-    @Override
-    public String toString() {
-        return "Reserva{" +
-                "codigo=" + codigo +
-                ", status='" + status + '\'' +
-                ", cpfHospede='" + cpfHospede + '\'' +
-                ", matriculaFuncionario='" + matriculaFuncionario + '\'' +
-                ", numeroQuarto=" + numerosQuartos +
-                "}\n";
-    }
+
+	@Override
+	public String toString() {
+		return "Reserva [codigo=" + codigo + ", status=" + status + ", cpfHospede=" + cpfHospede
+				+ ", matriculaFuncionario=" + matriculaFuncionario + ", numerosQuartos="
+				+ Arrays.toString(numerosQuartos) + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
+				+ ", hospedagem=" + hospedagem + "]";
+	}
+
+
+
 }
