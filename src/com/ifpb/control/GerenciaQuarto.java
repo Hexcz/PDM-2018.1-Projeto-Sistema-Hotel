@@ -9,28 +9,27 @@ import com.ifpb.model.Reserva;
 
 
 public class GerenciaQuarto {
-		private static ArrayList<Quarto> quartos;
-		
-		public GerenciaQuarto() {
-			quartos = new ArrayList<>();
-		}
+		private static ArrayList<Quarto> quartos = new ArrayList<>();
 		
 		public static boolean create(Quarto novoQuarto) {
-			if(readInternal(novoQuarto.getNumero())<0) {
-				return quartos.add(novoQuarto);
+			if(!quartos.isEmpty() && quartos.indexOf(novoQuarto)>=0) {
+				return false;
 			}
-			return false;
+			return quartos.add(novoQuarto);
+			
 		}
 
 		private static int readInternal(int numeroQuarto) {
-			for(int i = 0; i<quartos.size();i++) {
+			
+			for(int i=0;i<quartos.size();i++) {
 				if(quartos.get(i).getNumero() == numeroQuarto)
 					return i;
-			}
+			}		
 			return -1;
 		}
 		
 		public static Quarto read(int numeroQuarto) {
+			
 			for(Quarto q: quartos) {
 				if(q.getNumero() == numeroQuarto)
 					return q;
@@ -79,19 +78,32 @@ public class GerenciaQuarto {
 
 		public static boolean isQuartoLivre(int numero, LocalDate i, LocalDate f) {
 			List<Reserva> reservas = GerenciaReserva.listarReserva();
+<<<<<<< HEAD
 			if(reservas!=null) {
 				for(Reserva r : reservas) {
 					if(i.isAfter(r.getDataFim()) || f.isBefore(r.getDataInicio())) {
 						return true;
+=======
+			for(Reserva r : reservas) {
+				for(int numeroQuarto:r.getNumerosQuartos()) {
+					if(numeroQuarto == numero) {
+						if(i.isAfter(r.getDataFim()) || f.isBefore(r.getDataInicio())) {
+							return true;
+						}else return false;
+>>>>>>> a5719deff7e7e5e9ec1945aac8855d019dcfa0c4
 					}
 				}
 			}
-			return false;
+			return true;
+		}
+		
+		public static List<Quarto> listar(){
+			return quartos;
 		}
 		
 		@Override
 		public String toString() {
-			return "GerenciaQuarto [quartos=" + quartos + "]";
+			return quartos.toString();
 		}
 		
 		

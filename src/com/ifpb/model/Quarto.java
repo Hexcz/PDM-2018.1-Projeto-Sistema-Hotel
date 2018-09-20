@@ -13,7 +13,7 @@ public class Quarto {
 
 	@Override
 	public String toString() {
-		return "[numero=" + numero + ", status=" + status + ", tipoquarto=" + tipoquarto + "]";
+		return "numero=" + numero + ", status=" + status + ", tipoquarto=" + tipoquarto + "\n";
 	}
 
 	public int getNumero() {
@@ -33,6 +33,28 @@ public class Quarto {
 	}
 	public void setTipoquarto(TipoQuarto tipoquarto) {
 		this.tipoquarto = tipoquarto;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + numero;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Quarto other = (Quarto) obj;
+		if (numero != other.numero)
+			return false;
+		return true;
 	}
 	
 }

@@ -8,9 +8,15 @@ public class App {
 	public static void main(String[] args) {
 		
 		Scanner ler = new Scanner(System.in);
-		GerenciaQuarto gq = new GerenciaQuarto();
 		GerenciarFuncionario gf = new GerenciarFuncionario();
 		GerenciarHospede gh = new GerenciarHospede();
+		TipoQuarto[] tqs = new TipoQuarto[4];
+		tqs[0] = new TipoQuarto("É um quarto legal");
+		tqs[1] = new TipoQuarto("É um quarto massa");
+		tqs[2] = new TipoQuarto("É um quarto Top");
+		tqs[3] = new TipoQuarto("É um quarto mais ou menos");
+		Funcionario f = new Funcionario("", "", "123", "123", "", "", new ContaBancaria("", 1, "", true), new Endereco(null, null, null, 0, null)); 
+		gf.create(f);
 		
 		int i;
 		String usuario = null, senha = null;
@@ -29,17 +35,37 @@ public class App {
 				senha = ler.next();
 			}
 			
-			
-			
 //---------------------------------------------------------------------------------------------------------------------------------------------------	
 			if(i == 1 && gf.isAutenticado(usuario, senha)) {
+				ler.nextLine();
 				while(interruptor) {
-					System.out.print("1-Opções Funcionário     2-Mesas     3-Minha Conta"
-							+ "\n4-Cozinha     5-Gerência     0-Sair\n>>>>");
+					System.out.print("1-Quartos     2-Reservas     3-Minha Conta"
+							+ "\n4-Hóspede     5-Gerência     0-Sair\n>>>>");
 					i = ler.nextInt();
 //------------------------------------------------------------------------------------------------					
 					if(i == 1) {
-						
+						System.out.print("1-Adicionar Quarto     2-Remover Quarto     3-Ver Quartos"
+								+ "\n4-Atualizar            5-Ver Por Número     0-Sair\n>>>");
+						i = ler.nextInt();
+						if(i==1) {
+							System.out.println(GerenciaQuarto.create(constroiQuarto(ler, tqs)));
+						}
+						else if(i==2) {
+							System.out.print("Informe o numero do quarto:");
+							System.out.println(GerenciaQuarto.delete(ler.nextInt()));
+						}
+						else if(i==3) {
+							System.out.println(GerenciaQuarto.listar());
+						}
+						else if(i==4){
+							System.out.print("Informe o numero do quarto à ser atualizado:");
+							System.out.println(GerenciaQuarto.update(ler.nextInt(), constroiQuarto(ler, tqs)));
+						}
+						else if(i==5) {
+							System.out.print("Informe o numero do quarto:");
+							System.out.println(GerenciaQuarto.read(ler.nextInt()));
+							
+						}
 					}
 //------------------------------------------------------------------------------------------------					
 					else if(i==2) {
@@ -47,7 +73,22 @@ public class App {
 					}
 //------------------------------------------------------------------------------------------------
 					else if(i == 3) {
-						
+						System.out.println("Suas informações atuais:\n");
+						System.out.println(gf.read(usuario));
+						System.out.print("1-Atualizar     2-Deletar     0-Sair\n>>>");
+						i = ler.nextInt();
+						if(i==1) {
+							gf.update(usuario, construirFuncionario(ler));
+						}
+						else if(i==2) {
+							System.out.print("Tem certeza que deseja apagar todos os seus dados?\n"
+									+ "1-Sim     0-Não\n>>>");
+							i=ler.nextInt();
+							if(i==1) {
+								gf.delete(usuario);
+								break;
+							}
+						}
 					}
 //------------------------------------------------------------------------------------------------
 					else if(i == 4) {
@@ -64,7 +105,11 @@ public class App {
 //----------------------------------------------------------------------------------------------------------------------------------------------------	
 			else if(i == 2) {
 				gf.create(construirFuncionario(ler));
-			}else {System.out.println("Fim do programa"); break;}
+			}else if (i==0){
+				System.out.println("Fim do programa");
+				break;
+			
+			} 
 //---------------------------------------------------------------------------------------------------------------------------------------------------			
 			interruptor = true;
 		}
@@ -122,6 +167,16 @@ public class App {
 		 ler.nextLine();
 		 String cep = ler.nextLine();
 		 return new Endereco(cidade, bairro, rua, numero, cep);
+	 }
+	 static Quarto constroiQuarto(Scanner ler, TipoQuarto[] tqs) {
+		 System.out.print("Informe o numero do quarto:");
+		 int i = ler.nextInt();
+		 System.out.println("\nInforme o tipo do quarto:\n");
+		 for(int k=1;k<5;k++) {
+			 System.out.println(k+"-"+tqs[k-1]+"\n");
+		 }
+		 System.out.print(">>>");
+		 return new Quarto(i, tqs[ler.nextInt() - 1]);
 	 }
 }
 

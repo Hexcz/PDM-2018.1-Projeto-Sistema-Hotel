@@ -25,4 +25,8 @@ public class TipoQuarto {
 	public void setContador(int id) {
 		TipoQuarto.id = id;
 	}
+	@Override
+	public String toString() {
+		return "\ncodigo=" + codigo + ", descricao=" + descricao + "\n";
+	}
 }

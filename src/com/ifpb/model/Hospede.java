@@ -1,8 +1,5 @@
 package com.ifpb.model;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class Hospede {
 	private String nome;

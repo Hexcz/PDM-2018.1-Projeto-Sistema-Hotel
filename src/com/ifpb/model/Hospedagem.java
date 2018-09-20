@@ -6,7 +6,7 @@ public class Hospedagem {
 	private int codigo;
 	
 	public Hospedagem(String status, Float valor, int codigo) {
-		this.status = status;
+		this.status = "pendente";
 		this.valor = valor;
 		this.codigo = codigo;
 	}
