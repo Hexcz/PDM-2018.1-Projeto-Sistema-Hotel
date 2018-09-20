@@ -2,7 +2,6 @@ package com.ifpb.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Objects;
 
 import com.ifpb.control.GerenciaQuarto;
 import com.ifpb.exceptions.QuartoInvalidoException;

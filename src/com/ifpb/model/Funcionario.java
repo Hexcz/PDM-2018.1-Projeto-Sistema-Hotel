@@ -83,8 +83,8 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + ", senha=" + senha + ", matricula=" + matricula + ", contaBancaria=" + contaBancaria
-				+ ", endereco=" + endereco + "]";
+		return "cpf=" + cpf + "\nnome=" + nome + "\nemail=" + email + "\ntelefone=" + telefone + "\nsenha=" + senha + "\nmatricula=" + matricula + "\ncontaBancaria=" + contaBancaria
+				+ "\nendereco=" + endereco;
 	}
 
 	@Override

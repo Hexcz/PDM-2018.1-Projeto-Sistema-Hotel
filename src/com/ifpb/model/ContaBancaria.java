@@ -44,4 +44,11 @@ public class ContaBancaria {
     public void setContaCorrente(boolean contaCorrente) {
         this.contaCorrente = contaCorrente;
     }
+
+	@Override
+	public String toString() {
+		return "[titular=" + titular + ", agencia=" + agencia + ", numeroConta=" + numeroConta
+				+ ", contaCorrente=" + contaCorrente + "]";
+	}
+    
 }

@@ -12,28 +12,28 @@ public class GerenciarFuncionario {
 	}
 	
 	public boolean create(Funcionario f) {
-		if(!funcionarios.isEmpty() && funcionarios.get(f.getCpf())==f) {
+		if(!funcionarios.isEmpty() && funcionarios.get(f.getEmail())==f) {
 			return false;
 		}
-		funcionarios.put(f.getCpf(), f);
+		funcionarios.put(f.getEmail(), f);
 		return false;
 	}
 	
-	public Funcionario read(String matricula) {
-		return funcionarios.get(matricula);
+	public Funcionario read(String email) {
+		return funcionarios.get(email);
 	}
 	
-	public boolean update(String matriculaAntiga, Funcionario f) {
-		if(read(matriculaAntiga)!= null && delete(matriculaAntiga)==true) {
+	public boolean update(String email, Funcionario f) {
+		if(read(email)!= null && delete(email)==true) {
 			return create(f);
 		}
 		return false;
 	}
 	
-	public boolean delete(String matricula) {
-		if(funcionarios.isEmpty() && read(matricula)==null)
+	public boolean delete(String email) {
+		if(funcionarios.isEmpty() && read(email)==null)
 			return false;
-		return funcionarios.remove(matricula, read(matricula));
+		return funcionarios.remove(email, read(email));
 	}
 	
 	public boolean isAutenticado(String email, String senha) {
@@ -42,12 +42,9 @@ public class GerenciarFuncionario {
 			return f.getSenha().equals(senha);
 		return false;
 	}
-	public boolean test(int c) {
-		return true;
-	}
 	
 	@Override
 	public String toString() {
-		return "CadastrarFuncionario [funcionarios=" + funcionarios + "]";
+		return "[funcionarios=" + funcionarios + "]";
 	}
 }
