@@ -2,20 +2,31 @@ package com.ifpb.model;
 
 import java.util.Objects;
 
+import exceptions.QuartoInvalidoException;
+
 public class Reserva {
     private int codigo;
     private String status;
     private String cpfHospede;
     private String matriculaFuncionario;
-    private int numeroQuarto;
+    private int[] numerosQuartos;
 
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int numeroQuarto) {
+    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos)
+    			throws QuartoInvalidoException
+    {
         this.codigo = codigo;
         this.status = status;
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
-        this.numeroQuarto = numeroQuarto;
+        for(int q:numerosQuartos) {
+        	// aqui vai lançar a exceção se o quarto ja estiver ocupado
+        }
+        this.numerosQuartos = numerosQuartos;
+        //perguntar o numero de quartos no app
+        
     }
+    
+    
 
     public int getCodigo() {
         return codigo;
@@ -49,24 +60,19 @@ public class Reserva {
         this.matriculaFuncionario = matriculaFuncionario;
     }
 
-    public int getNumeroQuarto() {
-        return numeroQuarto;
+    public int[] getNumeroQuarto() {
+        return numerosQuartos;
     }
 
-    public void setNumeroQuarto(int numeroQuarto) {
-        this.numeroQuarto = numeroQuarto;
+    public void setNumeroQuarto(int[] numerosQuartos) {
+        this.numerosQuartos = numerosQuartos;
     }
 
     @Override
     public boolean equals(Object o) {
-//        if (this == o) return true;
         if (!(o instanceof Reserva)) return false;
         Reserva reserva = (Reserva) o;
         return codigo == reserva.getCodigo();
-//                && getNumeroQuarto() == reserva.getNumeroQuarto() &&
-//                Objects.equals(getStatus(), reserva.getStatus()) &&
-//                Objects.equals(getCpfHospede(), reserva.getCpfHospede()) &&
-//                Objects.equals(getMatriculaFuncionario(), reserva.getMatriculaFuncionario());
     }
 
     @Override
@@ -82,7 +88,7 @@ public class Reserva {
                 ", status='" + status + '\'' +
                 ", cpfHospede='" + cpfHospede + '\'' +
                 ", matriculaFuncionario='" + matriculaFuncionario + '\'' +
-                ", numeroQuarto=" + numeroQuarto +
+                ", numeroQuarto=" + numerosQuartos +
                 "}\n";
     }
 }
