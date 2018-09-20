@@ -2,6 +2,8 @@ package com.ifpb.model;
 
 import java.util.Objects;
 
+import com.ifpb.control.GerenciaQuarto;
+
 import exceptions.QuartoInvalidoException;
 
 public class Reserva {
@@ -19,7 +21,9 @@ public class Reserva {
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
         for(int q:numerosQuartos) {
-        	// aqui vai lançar a exceção se o quarto ja estiver ocupado
+        	if(GerenciaQuarto.isQuartoLivre(q)) {
+        		throw new QuartoInvalidoException();
+        	}
         }
         this.numerosQuartos = numerosQuartos;
         //perguntar o numero de quartos no app
