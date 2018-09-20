@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import com.ifpb.control.GerenciaQuarto;
-
-import exceptions.QuartoInvalidoException;
+import com.ifpb.exceptions.QuartoInvalidoException;
 
 public class Reserva {
     private int codigo;
@@ -18,13 +17,24 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
+<<<<<<< HEAD
+    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim)
+    			throws QuartoInvalidoException
+=======
     public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos,
+<<<<<<< HEAD
     		LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
+=======
+    		LocalDate dataInicio, LocalDate dataFim) throws QuartoInvalidoException
+>>>>>>> 8906f4aef06a69fa73e8bcfcdff0d9ca80350430
+>>>>>>> 6bd750831fc065f46074850d4ab874f8237c8d28
     {
         this.codigo = codigo;
         this.status = status;
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
         for(int q:numerosQuartos) {
         	if(!GerenciaQuarto.isQuartoLivre(q, this.dataInicio, this.dataFim)) {
         		throw new QuartoInvalidoException();
@@ -40,7 +50,11 @@ public class Reserva {
         //perguntar o numero de quartos no app
     }
     
+    public LocalDate getDataInicio() {
+		return dataInicio;
+	}
     
+<<<<<<< HEAD
 
     public Hospedagem getHospedagem() {
 		return hospedagem;
@@ -54,6 +68,20 @@ public class Reserva {
 
 
 
+=======
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+	
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
+	
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
+	
+>>>>>>> 6bd750831fc065f46074850d4ab874f8237c8d28
 	public int getCodigo() {
         return codigo;
     }
