@@ -6,20 +6,20 @@ import com.ifpb.model.Quarto;
 
 
 public class GerenciaQuarto {
-		private ArrayList<Quarto> quartos;
+		private static ArrayList<Quarto> quartos;
 		
 		public GerenciaQuarto() {
 			quartos = new ArrayList<>();
 		}
 		
-		public boolean create(Quarto novoQuarto) {
+		public static boolean create(Quarto novoQuarto) {
 			if(read(novoQuarto.getNumero())<0) {
 				return quartos.add(novoQuarto);
 			}
 			return false;
 		}
 
-		public int read(int numeroQuarto) {
+		public static int read(int numeroQuarto) {
 			for(int i = 0; i<quartos.size();i++) {
 				if(quartos.get(i).getNumero() == numeroQuarto)
 					return i;
@@ -27,14 +27,14 @@ public class GerenciaQuarto {
 			return -1;
 		}
 
-		public boolean update(int numeroQuarto, Quarto quarto) {
+		public static boolean update(int numeroQuarto, Quarto quarto) {
 			if(read(numeroQuarto)!= -1 && delete(numeroQuarto)==true) {
 				return create(quarto);
 			}
 			return false;
 		}
 		
-		public boolean delete(int numeroQuarto) {
+		public static boolean delete(int numeroQuarto) {
 			if(quartos.isEmpty() && read(numeroQuarto) == -1)
 				return false;
 			else
@@ -42,7 +42,7 @@ public class GerenciaQuarto {
 				return true;
 		}
 		
-		public boolean mudarStatus(int numeroQuarto) {
+		public static boolean mudarStatus(int numeroQuarto) {
 			for(Quarto q : quartos) {
 				if(q.getNumero()==numeroQuarto) {
 					if(q.getStatus()=="Reservado") {
@@ -56,7 +56,7 @@ public class GerenciaQuarto {
 			return false;
 		}
 		
-		public ArrayList<Quarto> listarQuartosLivres(){
+		public static ArrayList<Quarto> listarQuartosLivres(){
 			ArrayList<Quarto> q = new ArrayList<>();
 			for(Quarto quarto:quartos) {
 				if(quarto.getStatus()=="Livre") {
@@ -66,10 +66,14 @@ public class GerenciaQuarto {
 			return q;
 		}
 
-		public boolean isQuartoLivre(int codigo) {
-			for() {
-//				
+		public static boolean isQuartoLivre(int numero) {
+			
+			for(Quarto q:listarQuartosLivres()) {
+				if(q.getNumero()==numero) {
+					return false;
+				}
 			}
+			return true;
 		}
 		
 		@Override
