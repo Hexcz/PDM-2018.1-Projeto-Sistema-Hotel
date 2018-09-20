@@ -13,32 +13,40 @@ public class GerenciaQuarto {
 		}
 		
 		public static boolean create(Quarto novoQuarto) {
-			if(read(novoQuarto.getNumero())<0) {
+			if(readInternal(novoQuarto.getNumero())<0) {
 				return quartos.add(novoQuarto);
 			}
 			return false;
 		}
 
-		public static int read(int numeroQuarto) {
+		private static int readInternal(int numeroQuarto) {
 			for(int i = 0; i<quartos.size();i++) {
 				if(quartos.get(i).getNumero() == numeroQuarto)
 					return i;
 			}
 			return -1;
 		}
+		
+		public static Quarto read(int numeroQuarto) {
+			for(Quarto q: quartos) {
+				if(q.getNumero() == numeroQuarto)
+					return q;
+			}
+			return null;
+		}
 
 		public static boolean update(int numeroQuarto, Quarto quarto) {
-			if(read(numeroQuarto)!= -1 && delete(numeroQuarto)==true) {
+			if(readInternal(numeroQuarto)!= -1 && delete(numeroQuarto)==true) {
 				return create(quarto);
 			}
 			return false;
 		}
 		
 		public static boolean delete(int numeroQuarto) {
-			if(quartos.isEmpty() && read(numeroQuarto) == -1)
+			if(quartos.isEmpty() && readInternal(numeroQuarto) == -1)
 				return false;
 			else
-				quartos.remove(read(numeroQuarto));
+				quartos.remove(readInternal(numeroQuarto));
 				return true;
 		}
 		
