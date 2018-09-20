@@ -37,6 +37,23 @@ public class GerenciaReserva {
 		return false;
 	}
 	
+	public static boolean fecharReserva(int codigoReserva) {
+		Reserva reserva = read(codigoReserva);
+		if(reserva!=null) {
+			int quartos[] = reserva.getNumerosQuartos();
+			for(int i = 0;i<reserva.getNumerosQuartos().length;i++) {
+				if(GerenciaQuarto.mudarStatus(quartos[i])==false)
+					return false;
+			}
+			reserva.setStatus("Encerrada");
+			reserva.getHospedagem().setStatus("Paga");
+			if(GerenciaReservaEncerrada.add(reserva))
+				delete(reserva.getCodigo());
+			return true;
+		}
+		return false;
+	}
+	
 	public static List<Reserva> listarReserva(){
 		return reservas;
 	}

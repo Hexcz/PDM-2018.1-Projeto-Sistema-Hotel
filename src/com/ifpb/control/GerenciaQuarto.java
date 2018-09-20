@@ -79,9 +79,11 @@ public class GerenciaQuarto {
 
 		public static boolean isQuartoLivre(int numero, LocalDate i, LocalDate f) {
 			List<Reserva> reservas = GerenciaReserva.listarReserva();
-			for(Reserva r : reservas) {
-				if(i.isAfter(r.getDataFim()) || f.isBefore(r.getDataInicio())) {
-					return true;
+			if(reservas!=null) {
+				for(Reserva r : reservas) {
+					if(i.isAfter(r.getDataFim()) || f.isBefore(r.getDataInicio())) {
+						return true;
+					}
 				}
 			}
 			return false;
