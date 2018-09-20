@@ -15,8 +15,13 @@ public class Reserva {
     private LocalDate dataInicio;
     private LocalDate dataFim;
 
+<<<<<<< HEAD
     public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim)
     			throws QuartoInvalidoException
+=======
+    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos,
+    		LocalDate dataInicio, LocalDate dataFim) throws QuartoInvalidoException
+>>>>>>> 8906f4aef06a69fa73e8bcfcdff0d9ca80350430
     {
         this.codigo = codigo;
         this.status = status;
@@ -25,13 +30,17 @@ public class Reserva {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         for(int q:numerosQuartos) {
-        	if(GerenciaQuarto.isQuartoLivre(q)) {
+        	if(!GerenciaQuarto.isQuartoLivre(q, this.dataInicio, this.dataFim)) {
         		throw new QuartoInvalidoException();
         	}
         }
+        for(int q:numerosQuartos) {
+        	GerenciaQuarto.mudarStatus(q);
+        }
         this.numerosQuartos = numerosQuartos;
-        //perguntar o numero de quartos no app
+        this.dataInicio = dataInicio;
         
+        //perguntar o numero de quartos no app
     }
     
     public LocalDate getDataInicio() {
@@ -81,27 +90,41 @@ public class Reserva {
     public void setMatriculaFuncionario(String matriculaFuncionario) {
         this.matriculaFuncionario = matriculaFuncionario;
     }
+    
+    public int[] getNumerosQuartos() {
+		return numerosQuartos;
+	}
 
-    public int[] getNumeroQuarto() {
-        return numerosQuartos;
-    }
 
-    public void setNumeroQuarto(int[] numerosQuartos) {
-        this.numerosQuartos = numerosQuartos;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (!(o instanceof Reserva)) return false;
-        Reserva reserva = (Reserva) o;
-        return codigo == reserva.getCodigo();
-    }
+	public void setNumerosQuartos(int[] numerosQuartos) {
+		this.numerosQuartos = numerosQuartos;
+	}
 
-    @Override
-    public int hashCode() {
 
-        return Objects.hash(getCodigo(), getStatus(), getCpfHospede(), getMatriculaFuncionario(), getNumeroQuarto());
-    }
+
+	public LocalDate getDataInicio() {
+		return dataInicio;
+	}
+
+
+
+	public void setDataInicio(LocalDate dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+
+
+	public LocalDate getDataFim() {
+		return dataFim;
+	}
+
+
+
+	public void setDataFim(LocalDate dataFim) {
+		this.dataFim = dataFim;
+	}
+
 
     @Override
     public String toString() {

@@ -1,8 +1,11 @@
 package com.ifpb.control;
 
+import java.util.List;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.ifpb.model.Quarto;
+import com.ifpb.model.Reserva;
 
 
 public class GerenciaQuarto {
@@ -64,24 +67,24 @@ public class GerenciaQuarto {
 			return false;
 		}
 		
-		public static ArrayList<Quarto> listarQuartosLivres(){
+		public static ArrayList<Quarto> listarQuartosLivres(LocalDate i, LocalDate f){
 			ArrayList<Quarto> q = new ArrayList<>();
 			for(Quarto quarto:quartos) {
-				if(quarto.getStatus()=="Livre") {
+				if(isQuartoLivre(quarto.getNumero(), i, f)) {
 					q.add(quarto);
 				}
 			}
 			return q;
 		}
 
-		public static boolean isQuartoLivre(int numero) {
-			
-			for(Quarto q:listarQuartosLivres()) {
-				if(q.getNumero()==numero) {
-					return false;
+		public static boolean isQuartoLivre(int numero, LocalDate i, LocalDate f) {
+			List<Reserva> reservas = GerenciaReserva.listarReserva();
+			for(Reserva r : reservas) {
+				if(i.isAfter(r.getDataFim()) || f.isBefore(r.getDataInicio())) {
+					return true;
 				}
 			}
-			return true;
+			return false;
 		}
 		
 		@Override

@@ -34,7 +34,7 @@ public class App {
 //---------------------------------------------------------------------------------------------------------------------------------------------------	
 			if(i == 1 && gf.isAutenticado(usuario, senha)) {
 				while(interruptor) {
-					System.out.print("1-Opções Funcioanrio     2-Mesas     3-Minha Conta"
+					System.out.print("1-Opções Funcionário     2-Mesas     3-Minha Conta"
 							+ "\n4-Cozinha     5-Gerência     0-Sair\n>>>>");
 					i = ler.nextInt();
 //------------------------------------------------------------------------------------------------					
