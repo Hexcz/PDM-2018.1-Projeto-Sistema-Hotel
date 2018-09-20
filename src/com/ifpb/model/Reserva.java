@@ -17,17 +17,7 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
-<<<<<<< HEAD
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim)
-    			throws QuartoInvalidoException
-=======
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos,
-<<<<<<< HEAD
-    		LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
-=======
-    		LocalDate dataInicio, LocalDate dataFim) throws QuartoInvalidoException
->>>>>>> 8906f4aef06a69fa73e8bcfcdff0d9ca80350430
->>>>>>> 6bd750831fc065f46074850d4ab874f8237c8d28
+    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
     {
         this.codigo = codigo;
         this.status = status;
@@ -53,8 +43,6 @@ public class Reserva {
     public LocalDate getDataInicio() {
 		return dataInicio;
 	}
-    
-<<<<<<< HEAD
 
     public Hospedagem getHospedagem() {
 		return hospedagem;
@@ -65,10 +53,6 @@ public class Reserva {
 	public void setHospedagem(Hospedagem hospedagem) {
 		this.hospedagem = hospedagem;
 	}
-
-
-
-=======
 	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
@@ -81,7 +65,6 @@ public class Reserva {
 		this.dataFim = dataFim;
 	}
 	
->>>>>>> 6bd750831fc065f46074850d4ab874f8237c8d28
 	public int getCodigo() {
         return codigo;
     }
@@ -123,32 +106,6 @@ public class Reserva {
 	public void setNumerosQuartos(int[] numerosQuartos) {
 		this.numerosQuartos = numerosQuartos;
 	}
-
-
-
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-
-
-	public LocalDate getDataFim() {
-		return dataFim;
-	}
-
-
-
-	public void setDataFim(LocalDate dataFim) {
-		this.dataFim = dataFim;
-	}
-
-
 
 	@Override
 	public String toString() {
