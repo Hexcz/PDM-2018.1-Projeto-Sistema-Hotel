@@ -13,9 +13,9 @@ public class GerenciaReserva {
 		return reservas.add(r);
 	}
 	
-	public static Reserva read(int codigo) {
+	public static Reserva read(String cpfHospede) {
 		for(Reserva r: reservas) {
-			if(r.getCodigo() == codigo)
+			if(r.getCpfHospede().equals(cpfHospede))
 				return r;
 		}
 		return null;
@@ -27,14 +27,14 @@ public class GerenciaReserva {
 		return false;
 	}
 	
-	public static boolean delete(int codigo) {
+	public static boolean delete(String cpfHospede) {
 		if(!reservas.isEmpty())
-			return reservas.remove(read(codigo));
+			return reservas.remove(read(cpfHospede));
 		return false;
 	}
 	
-	public static boolean fecharReserva(int codigoReserva) {
-		Reserva reserva = read(codigoReserva);
+	public static boolean fecharReserva(String cpfHospede) {
+		Reserva reserva = read(cpfHospede);
 		if(reserva!=null) {
 			int quartos[] = reserva.getNumerosQuartos();
 			for(int i = 0;i<reserva.getNumerosQuartos().length;i++) {
@@ -44,7 +44,7 @@ public class GerenciaReserva {
 			reserva.setStatus("Encerrada");
 			reserva.getHospedagem().setStatus("Paga");
 			if(GerenciaReservaEncerrada.add(reserva))
-				delete(reserva.getCodigo());
+				delete(reserva.getCpfHospede());
 			return true;
 		}
 		return false;
