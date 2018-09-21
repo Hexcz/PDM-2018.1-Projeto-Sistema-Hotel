@@ -8,6 +8,7 @@ import com.ifpb.exceptions.QuartoInvalidoException;
 
 public class Reserva {
     private int codigo;
+    private static int id;
     private String status;
     private String cpfHospede;
     private String matriculaFuncionario;
@@ -16,10 +17,11 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
+    public Reserva(String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
     {
-        this.codigo = codigo;
-        this.status = status;
+        
+    	codigo = ++id;
+        this.status = "Aberta";
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
         this.dataInicio = dataInicio;
@@ -68,10 +70,6 @@ public class Reserva {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -105,7 +103,7 @@ public class Reserva {
 	public void setNumerosQuartos(int[] numerosQuartos) {
 		this.numerosQuartos = numerosQuartos;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Reserva [codigo=" + codigo + ", status=" + status + ", cpfHospede=" + cpfHospede

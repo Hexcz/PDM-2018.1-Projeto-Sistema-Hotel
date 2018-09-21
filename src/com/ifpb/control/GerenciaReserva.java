@@ -5,11 +5,7 @@ import java.util.List;
 import com.ifpb.model.Reserva;
 
 public class GerenciaReserva {
-	private static List<Reserva> reservas;
-	
-	public GerenciaReserva() {
-		reservas = new ArrayList<>();
-	}
+	private static List<Reserva> reservas = new ArrayList<>();
 	
 	public static boolean create(Reserva r) {
 		if(!reservas.isEmpty() && reservas.indexOf(r)>=0)

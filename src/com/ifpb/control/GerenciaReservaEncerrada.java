@@ -6,11 +6,7 @@ import java.util.List;
 import com.ifpb.model.Reserva;
 
 public class GerenciaReservaEncerrada {
-	private static List<Reserva> reservas;
-	
-	public GerenciaReservaEncerrada() {
-		reservas = new ArrayList<>();
-	}
+	private static List<Reserva> reservas = new ArrayList<>();
 	
 	public static boolean add(Reserva reserva) {
 		if(buscarCodigoReserva(reserva.getCodigo())>0)

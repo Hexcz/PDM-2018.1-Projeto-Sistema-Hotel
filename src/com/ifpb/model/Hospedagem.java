@@ -4,11 +4,12 @@ public class Hospedagem {
 	private String status;
 	private Float valor;
 	private int codigo;
+	private static int id; 
 	
-	public Hospedagem(String status, Float valor, int codigo) {
+	public Hospedagem(Float valor) {
 		this.status = "pendente";
 		this.valor = valor;
-		this.codigo = codigo;
+		this.codigo = ++id;
 	}
 
 	public String getStatus() {

@@ -1,7 +1,9 @@
 package com.ifpb.view;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.ifpb.control.*;
+import com.ifpb.exceptions.QuartoInvalidoException;
 import com.ifpb.model.*;
 
 public class App {
@@ -21,6 +23,7 @@ public class App {
 		int i;
 		String usuario = null, senha = null;
 		boolean interruptor = true;
+		LocalDate ld=null;
 		
 		while(interruptor) {
 			System.out.println("----------------TELA INICIAL--------------");
@@ -69,6 +72,34 @@ public class App {
 					}
 //------------------------------------------------------------------------------------------------					
 					else if(i==2) {
+						System.out.println("1-Criar Reserva     2-Fechar Reserva     3-Apagar Reserva"
+								+ "\n4-Atualizar Reserva     5-Buscar Reserva     0-Sair");
+						
+						i = ler.nextInt();
+						if(i==1) {
+							String mat = gf.read(usuario).getMatricula();
+							Reserva r = construirReserva(ler, mat);
+							if(r!=null) {
+								System.out.println(GerenciaReserva.create(r));
+							}
+							else System.out.println("false");
+						}
+						else if(i==2) {
+							System.out.print("Informe o numero do quarto:");
+							System.out.println(GerenciaQuarto.delete(ler.nextInt()));
+						}
+						else if(i==3) {
+							System.out.println(GerenciaQuarto.listar());
+						}
+						else if(i==4){
+							System.out.print("Informe o numero do quarto à ser atualizado:");
+							System.out.println(GerenciaQuarto.update(ler.nextInt(), constroiQuarto(ler, tqs)));
+						}
+						else if(i==5) {
+							System.out.print("Informe o numero do quarto:");
+							System.out.println(GerenciaQuarto.read(ler.nextInt()));
+							
+						}
 						
 					}
 //------------------------------------------------------------------------------------------------
@@ -95,7 +126,29 @@ public class App {
 						
 					}
 					else if(i == 5){
+						System.out.println("1-Listar todas as Reservas Fechadas             2-Valor por um determinado período"
+								+ "\n3-Listar reservas por um determinado período    0-Sair");
+						i = ler.nextInt();
 						
+						if(i == 1) {
+							System.out.println("Lista com todas as Reservas fechadas:\n");
+							GerenciaReservaEncerrada.listar();
+						}
+						else if(i == 2) {
+							System.out.println("Informe as datas:\n");
+							System.out.println("Data inicio:\n");
+							ld = construirData(ler);
+							System.out.println("Data fim:\n");
+							//método
+							
+						}
+						else if(i == 3) {
+							System.out.println("Informe as datas:\n");
+							System.out.println("Data inicio:\n");
+							ld = construirData(ler);
+							System.out.println("Data fim:\n");
+							//método
+						}
 					}
 					else {
 						interruptor=false;
@@ -177,6 +230,61 @@ public class App {
 		 }
 		 System.out.print(">>>");
 		 return new Quarto(i, tqs[ler.nextInt() - 1]);
+	 }
+	 static LocalDate construirData(Scanner ler) {
+			System.out.print("Informe o ano:");
+			int ano = ler.nextInt();
+			System.out.print("Informe o mês:");
+			int mes = ler.nextInt();
+			System.out.print("Informe o dia do mês:");
+			int dia = ler.nextInt();
+			return LocalDate.of(ano, mes, dia);
+	 }
+	 static Hospede construirHospede(Scanner ler) {
+		 System.out.print("Informe o nome:");
+		 String nome = ler.nextLine();
+		 System.out.print("Informe CPF:");
+		 String cpf = ler.next();
+		 System.out.print("Informe telefone:");
+		 String telefone = ler.next();
+		 System.out.print("Informe email:");
+		 String email = ler.next();
+		 System.out.println("Informe endereço:");
+		 Endereco e = constroiEndereco(ler);
+		 return new Hospede(nome, cpf, telefone, email, e);
+	 }
+	 
+	 
+	 static Reserva construirReserva(Scanner ler, String matricula) {
+		 int i=0;
+		 LocalDate ld1;
+		 LocalDate ld2;
+		 do {
+			System.out.println("Informe a data:\n");
+		 	System.out.println("Inicio:\n");
+		 	ld1 = construirData(ler);
+		 	System.out.println("Fim:\n");
+		 	ld2 = construirData(ler);
+		 	System.out.println(GerenciaQuarto.listarQuartosLivres(ld1, ld2));
+		 	System.out.print("Informe quantos quartos para reservar(0 para voltar a informação das datas):");
+		 	i = ler.nextInt();
+		 }while(i<=0);
+		 int[] quartos = new int[i];
+		 System.out.println("Informe os quartos:");
+		 for(int k = 0;k < i;k++) {
+			 System.out.print(">>>");
+			 quartos[k] = ler.nextInt();
+			 System.out.println();
+		 }
+		 System.out.println("Informe os dados do Hospede:\n");
+		 Hospede h = construirHospede(ler);
+		 System.out.println("Valor Total:\n");
+		 try {
+			return new Reserva(h.getCpf(), matricula,  quartos, ld1, ld2, new Hospedagem(ler.nextFloat()));
+		} catch (QuartoInvalidoException e) {
+			return null;
+		}
+		 
 	 }
 }
 
