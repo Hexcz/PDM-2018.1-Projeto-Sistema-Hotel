@@ -76,8 +76,8 @@ public class App {
 								+ "\n4-Atualizar Reserva     5-Buscar Reserva     0-Sair");
 						
 						i = ler.nextInt();
+						String mat = gf.read(usuario).getMatricula();
 						if(i==1) {
-							String mat = gf.read(usuario).getMatricula();
 							Reserva r = construirReserva(ler, mat);
 							if(r!=null) {
 								System.out.println(GerenciaReserva.create(r));
@@ -85,19 +85,20 @@ public class App {
 							else System.out.println("false");
 						}
 						else if(i==2) {
-							System.out.print("Informe o numero do quarto:");
-							System.out.println(GerenciaQuarto.delete(ler.nextInt()));
+							System.out.print("Informe o CPF do hóspede:");
+							System.out.println(GerenciaReserva.fecharReserva(ler.next()));
 						}
 						else if(i==3) {
-							System.out.println(GerenciaQuarto.listar());
+							System.out.print("Informe o CPF do hóspede:");
+							System.out.println(GerenciaReserva.delete(ler.next()));
 						}
 						else if(i==4){
-							System.out.print("Informe o numero do quarto à ser atualizado:");
-							System.out.println(GerenciaQuarto.update(ler.nextInt(), constroiQuarto(ler, tqs)));
+							System.out.print("Informe o CPF do hóspede:");
+							System.out.println(GerenciaReserva.update(construirReserva(ler, mat)));
 						}
 						else if(i==5) {
-							System.out.print("Informe o numero do quarto:");
-							System.out.println(GerenciaQuarto.read(ler.nextInt()));
+							System.out.print("Informe o CPF do hóspede:");
+							System.out.println(GerenciaReserva.read(ler.next()));
 							
 						}
 						
@@ -123,6 +124,25 @@ public class App {
 					}
 //------------------------------------------------------------------------------------------------
 					else if(i == 4) {
+						System.out.println("1-Cadastrar Hóspede     2-Excluir Hóspede     3-Buscar Hóspede por CPF"
+								+ "4-Listar Hóspedes     5-Atualizar Hóspede     0-Sair");
+						i = ler.nextInt();
+						
+						if(i==1) {
+							
+						}
+						else if(i==2) {
+							
+						}
+						else if(i==3) {
+							
+						}
+						else if(i==4) {
+	
+						}
+						else if(i==5) {
+							
+						}
 						
 					}
 					else if(i == 5){
@@ -139,7 +159,7 @@ public class App {
 							System.out.println("Data inicio:\n");
 							ld = construirData(ler);
 							System.out.println("Data fim:\n");
-							//método
+							System.out.println(GerenciaReservaEncerrada.ganhoPeriodo(ld, construirData(ler)));
 							
 						}
 						else if(i == 3) {
@@ -147,7 +167,7 @@ public class App {
 							System.out.println("Data inicio:\n");
 							ld = construirData(ler);
 							System.out.println("Data fim:\n");
-							//método
+							System.out.println(GerenciaReservaEncerrada.reservasPeriodo(ld, construirData(ler)));
 						}
 					}
 					else {
@@ -276,11 +296,11 @@ public class App {
 			 quartos[k] = ler.nextInt();
 			 System.out.println();
 		 }
-		 System.out.println("Informe os dados do Hospede:\n");
-		 Hospede h = construirHospede(ler);
+		 System.out.println("Informe o CPF do Hospede:\n");
+		 String h = ler.next();
 		 System.out.println("Valor Total:\n");
 		 try {
-			return new Reserva(h.getCpf(), matricula,  quartos, ld1, ld2, new Hospedagem(ler.nextFloat()));
+			return new Reserva(h, matricula,  quartos, ld1, ld2, new Hospedagem(ler.nextFloat()));
 		} catch (QuartoInvalidoException e) {
 			return null;
 		}

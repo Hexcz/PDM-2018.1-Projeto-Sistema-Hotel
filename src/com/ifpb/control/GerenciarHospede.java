@@ -4,20 +4,16 @@ import com.ifpb.model.Hospede;
 import java.util.ArrayList;
 
 public class GerenciarHospede {
-	private List<Hospede> hospedes;
+	private static List<Hospede> hospedes = new ArrayList<>();
 	
-	public GerenciarHospede() {
-		hospedes = new ArrayList<>();
-	}
-	
-	public boolean create(Hospede hospede) {
+	public static boolean create(Hospede hospede) {
 		if(!hospedes.isEmpty() && hospedes.indexOf(hospede)>=0) {
 			return false;
 		}
 		return hospedes.add(hospede);
 	}
 	
-	public List<Hospede> read(String cpfOuNome) {
+	public static List<Hospede> read(String cpfOuNome) {
 		List<Hospede> hospede = new ArrayList<>();
 		if(Character.isDigit(cpfOuNome.charAt(0)) && !hospedes.isEmpty()) {
 			for(Hospede h:hospedes) {
@@ -39,7 +35,7 @@ public class GerenciarHospede {
 		return null;
 	}
 	
-	private Hospede readHospede(String cpf) {
+	public static Hospede readHospede(String cpf) {
 		if(!hospedes.isEmpty()) {
 			for(Hospede h:hospedes) {
 				if(cpf.equals(h.getCpf())) {
@@ -50,19 +46,19 @@ public class GerenciarHospede {
 		return null;
 	}
 
-	public boolean update(String cpf, Hospede h) {
+	public static boolean update(String cpf, Hospede h) {
 		if(delete(cpf)) {
 			return create(h);
 		}
 		return false;
 	}
 
-	public boolean delete(String cpf) {
+	public static boolean delete(String cpf) {
 		return hospedes.remove(readHospede(cpf));
 	}
 
 	
-	public List<Hospede> listarHospedes(){
+	public static List<Hospede> listarHospedes(){
 		return hospedes;
 	}
 	
