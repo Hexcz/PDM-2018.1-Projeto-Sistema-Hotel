@@ -27,6 +27,6 @@ public class TipoQuarto {
 	}
 	@Override
 	public String toString() {
-		return "\ncodigo=" + codigo + ", descricao=" + descricao + "\n";
+		return "descricao=" + descricao;
 	}
 }

@@ -12,11 +12,11 @@ public class GerenciarFuncionario {
 	}
 	
 	public boolean create(Funcionario f) {
-		if(!funcionarios.isEmpty() && funcionarios.get(f.getEmail())==f) {
+		if(!funcionarios.isEmpty() && funcionarios.get(f.getEmail())!=null) {
 			return false;
 		}
 		funcionarios.put(f.getEmail(), f);
-		return false;
+		return true;
 	}
 	
 	public Funcionario read(String email) {

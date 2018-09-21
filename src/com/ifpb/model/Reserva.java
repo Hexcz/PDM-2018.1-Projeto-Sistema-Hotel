@@ -112,7 +112,7 @@ public class Reserva {
 		return "Reserva [codigo=" + codigo + ", status=" + status + ", cpfHospede=" + cpfHospede
 				+ ", matriculaFuncionario=" + matriculaFuncionario + ", numerosQuartos="
 				+ Arrays.toString(numerosQuartos) + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
-				+ ", hospedagem=" + hospedagem + "]";
+				+ ", " + hospedagem + "]";
 	}
 
 

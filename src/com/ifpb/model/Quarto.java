@@ -13,7 +13,7 @@ public class Quarto {
 
 	@Override
 	public String toString() {
-		return "numero=" + numero + ", status=" + status + ", tipoquarto=" + tipoquarto + "\n";
+		return "numero=" + numero + ", status=" + status + ", " +tipoquarto + ".\n";
 	}
 
 	public int getNumero() {
