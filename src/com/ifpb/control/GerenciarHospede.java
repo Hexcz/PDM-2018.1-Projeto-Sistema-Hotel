@@ -46,8 +46,8 @@ public class GerenciarHospede {
 		return null;
 	}
 
-	public static boolean update(String cpf, Hospede h) {
-		if(delete(cpf)) {
+	public static boolean update(Hospede h) {
+		if(delete(h.getCpf())) {
 			return create(h);
 		}
 		return false;

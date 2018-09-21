@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.ifpb.control.*;
+import com.ifpb.exceptions.HospedeInexistenteException;
 import com.ifpb.exceptions.QuartoInvalidoException;
 import com.ifpb.model.*;
 
@@ -11,7 +12,6 @@ public class App {
 		
 		Scanner ler = new Scanner(System.in);
 		GerenciarFuncionario gf = new GerenciarFuncionario();
-		GerenciarHospede gh = new GerenciarHospede();
 		TipoQuarto[] tqs = new TipoQuarto[4];
 		tqs[0] = new TipoQuarto("É um quarto legal");
 		tqs[1] = new TipoQuarto("É um quarto massa");
@@ -77,12 +77,16 @@ public class App {
 						
 						i = ler.nextInt();
 						String mat = gf.read(usuario).getMatricula();
-						if(i==1) {
-							Reserva r = construirReserva(ler, mat);
-							if(r!=null) {
-								System.out.println(GerenciaReserva.create(r));
+						Reserva r = null;
+						if(i==1 || i==4) {
+							r = construirReserva(ler, mat);
+							if(r==null) {
+								System.out.println("false");
+								i=0;
 							}
-							else System.out.println("false");
+						}
+						if(i==1) {
+							System.out.println(GerenciaReserva.create(r));
 						}
 						else if(i==2) {
 							System.out.print("Informe o CPF do hóspede:");
@@ -94,7 +98,7 @@ public class App {
 						}
 						else if(i==4){
 							System.out.print("Informe o CPF do hóspede:");
-							System.out.println(GerenciaReserva.update(construirReserva(ler, mat)));
+							System.out.println(GerenciaReserva.update(r));
 						}
 						else if(i==5) {
 							System.out.print("Informe o CPF do hóspede:");
@@ -124,24 +128,26 @@ public class App {
 					}
 //------------------------------------------------------------------------------------------------
 					else if(i == 4) {
-						System.out.println("1-Cadastrar Hóspede     2-Excluir Hóspede     3-Buscar Hóspede por CPF"
+						System.out.println("1-Cadastrar Hóspede     2-Excluir Hóspede     3-Buscar Hóspede por CPF ou Nome"
 								+ "4-Listar Hóspedes     5-Atualizar Hóspede     0-Sair");
 						i = ler.nextInt();
 						
 						if(i==1) {
-							
+							System.out.println(GerenciarHospede.create(construirHospede(ler)));
 						}
 						else if(i==2) {
-							
+							System.out.print("Informe o CPF do hospede:");
+							System.out.println(GerenciarHospede.delete(ler.next()));
 						}
 						else if(i==3) {
-							
+							System.out.print("Informe o nome ou o CPF do hospede:");
+							System.out.println(GerenciarHospede.read(ler.nextLine()));
 						}
 						else if(i==4) {
-	
+							System.out.println(GerenciarHospede.listarHospedes());
 						}
 						else if(i==5) {
-							
+							System.out.println(GerenciarHospede.update(construirHospede(ler)));
 						}
 						
 					}
@@ -303,8 +309,9 @@ public class App {
 			return new Reserva(h, matricula,  quartos, ld1, ld2, new Hospedagem(ler.nextFloat()));
 		} catch (QuartoInvalidoException e) {
 			return null;
+		} catch (HospedeInexistenteException e) {
+			return null;
 		}
 		 
 	 }
 }
-

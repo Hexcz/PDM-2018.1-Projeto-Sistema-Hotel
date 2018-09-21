@@ -19,21 +19,13 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
-<<<<<<< HEAD
-    public Reserva(String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
+    public Reserva(String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException, HospedeInexistenteException
     {
-        
-    	codigo = ++id;
+        this.codigo = ++id;
         this.status = "Aberta";
-=======
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException, HospedeInexistenteException
-    {
-        this.codigo = codigo;
-        this.status = status;
         if(GerenciarHospede.readHospede(cpfHospede)==null) {
         	throw new HospedeInexistenteException();
         }
->>>>>>> 86a808e417208d56baa26ed4150864b9c303d197
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
         this.dataInicio = dataInicio;
@@ -50,7 +42,6 @@ public class Reserva {
         this.dataInicio = dataInicio;
         this.hospedagem = hospedagem;
         
-        //perguntar o numero de quartos no app
     }
     
     public LocalDate getDataInicio() {
