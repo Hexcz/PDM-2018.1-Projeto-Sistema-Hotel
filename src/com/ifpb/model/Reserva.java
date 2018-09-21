@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 import com.ifpb.control.GerenciaQuarto;
+import com.ifpb.control.GerenciarHospede;
+import com.ifpb.exceptions.HospedeInexistenteException;
 import com.ifpb.exceptions.QuartoInvalidoException;
 
 public class Reserva {
@@ -16,10 +18,13 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
-    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException
+    public Reserva(int codigo, String status, String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException, HospedeInexistenteException
     {
         this.codigo = codigo;
         this.status = status;
+        if(GerenciarHospede.readHospede(cpfHospede)==null) {
+        	throw new HospedeInexistenteException();
+        }
         this.cpfHospede = cpfHospede;
         this.matriculaFuncionario = matriculaFuncionario;
         this.dataInicio = dataInicio;
