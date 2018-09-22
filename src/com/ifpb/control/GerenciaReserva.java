@@ -41,6 +41,7 @@ public class GerenciaReserva {
 				if(GerenciaQuarto.mudarStatus(quartos[i])==false)
 					return false;
 			}
+			
 			reserva.setStatus("Encerrada");
 			reserva.getHospedagem().setStatus("Paga");
 			if(GerenciaReservaEncerrada.add(reserva))

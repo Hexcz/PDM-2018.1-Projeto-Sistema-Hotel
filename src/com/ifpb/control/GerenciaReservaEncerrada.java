@@ -10,7 +10,7 @@ public class GerenciaReservaEncerrada {
 	private static List<Reserva> reservas = new ArrayList<>();
 	
 	public static boolean add(Reserva reserva) {
-		if(buscarIndiceReserva(reserva.getCodigo())>0)
+		if(buscarIndiceReserva(reserva.getCodigo())<0)
 			return reservas.add(reserva);
 		return false;
 	}

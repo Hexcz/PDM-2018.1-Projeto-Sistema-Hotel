@@ -143,7 +143,7 @@ public class App {
 						}
 						else if(i==3) {
 							System.out.print("Informe o nome ou o CPF do hospede:");
-							System.out.println(GerenciarHospede.read(ler.nextLine()));
+							System.out.println(GerenciarHospede.readHospede(ler.next()));
 						}
 						else if(i==4) {
 							System.out.println(GerenciarHospede.listarHospedes());
@@ -159,8 +159,8 @@ public class App {
 						i = ler.nextInt();
 						
 						if(i == 1) {
-							System.out.println("Lista com todas as Reservas fechadas:\n");
-							GerenciaReservaEncerrada.listar();
+//							System.out.println("Lista todas as Reservas fechadas:\n");
+							System.out.println(GerenciaReservaEncerrada.listar());
 						}
 						else if(i == 2) {
 							System.out.println("Informe as datas:\n");
