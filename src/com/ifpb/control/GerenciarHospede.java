@@ -1,5 +1,7 @@
 package com.ifpb.control;
 import java.util.List;
+
+import com.ifpb.exceptions.ListaHospedeVaziaException;
 import com.ifpb.model.Hospede;
 import java.util.ArrayList;
 
@@ -35,25 +37,30 @@ public class GerenciarHospede {
 		return null;
 	}
 	
-	public static Hospede readHospede(String cpf) {
-		if(!hospedes.isEmpty()) {
-			for(Hospede h:hospedes) {
-				if(cpf.equals(h.getCpf())) {
-					return h;
+	public static Hospede readHospede(String cpf) throws ListaHospedeVaziaException{
+		if(hospedes.size()==0) {
+			throw new ListaHospedeVaziaException();
+		}
+		else {
+			if(!hospedes.isEmpty()) {
+				for(Hospede h:hospedes) {
+					if(cpf.equals(h.getCpf())) {
+						return h;
+					}
 				}
 			}
+			return null;
 		}
-		return null;
 	}
 
-	public static boolean update(Hospede h) {
+	public static boolean update(Hospede h) throws ListaHospedeVaziaException{
 		if(delete(h.getCpf())) {
 			return create(h);
 		}
 		return false;
 	}
 
-	public static boolean delete(String cpf) {
+	public static boolean delete(String cpf) throws ListaHospedeVaziaException{
 		return hospedes.remove(readHospede(cpf));
 	}
 

@@ -6,6 +6,7 @@ import java.util.Arrays;
 import com.ifpb.control.GerenciaQuarto;
 import com.ifpb.control.GerenciarHospede;
 import com.ifpb.exceptions.HospedeInexistenteException;
+import com.ifpb.exceptions.ListaHospedeVaziaException;
 import com.ifpb.exceptions.QuartoInvalidoException;
 
 public class Reserva {
@@ -19,7 +20,7 @@ public class Reserva {
     private LocalDate dataFim;
     private Hospedagem hospedagem;
 
-    public Reserva(String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException, HospedeInexistenteException
+    public Reserva(String cpfHospede, String matriculaFuncionario, int[] numerosQuartos, LocalDate dataInicio, LocalDate dataFim, Hospedagem hospedagem) throws QuartoInvalidoException, HospedeInexistenteException, ListaHospedeVaziaException
     {
         this.codigo = ++id;
         this.status = "Aberta";
